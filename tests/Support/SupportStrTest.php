@@ -248,6 +248,16 @@ class SupportStrTest extends TestCase
         $this->assertSame('yv0et', Str::beforeLast('yv0et0te', '0'));
         $this->assertSame('yv0et', Str::beforeLast('yv0et0te', 0));
         $this->assertSame('yv2et', Str::beforeLast('yv2et2te', 2));
+        // Ignore Case
+        $this->assertSame('yve', Str::beforeLast('yvette', 'TTE', true));
+        $this->assertSame('yvet', Str::beforeLast('yvette', 'T', true));
+        $this->assertSame('ééé ', Str::beforeLast('ééé yvette', 'YVE', true));
+        $this->assertSame('', Str::beforeLast('yvette', 'YVE', true));
+        $this->assertSame('yvette', Str::beforeLast('yvette', 'XXXX', true));
+        $this->assertSame('yvette', Str::beforeLast('yvette', '', true));
+        $this->assertSame('yv0et', Str::beforeLast('yv0et0te', '0', true));
+        $this->assertSame('yv0et', Str::beforeLast('yv0et0te', 0, true));
+        $this->assertSame('yv2et', Str::beforeLast('yv2et2te', 2, true));
     }
 
     public function testStrBetween()
@@ -331,6 +341,17 @@ class SupportStrTest extends TestCase
         $this->assertSame('te', Str::afterLast('yv0et0te', 0));
         $this->assertSame('te', Str::afterLast('yv2et2te', 2));
         $this->assertSame('foo', Str::afterLast('----foo', '---'));
+        // Ignore Case
+        $this->assertSame('tte', Str::afterLast('yvette', 'YVE', true));
+        $this->assertSame('e', Str::afterLast('yvette', 'T', true));
+        $this->assertSame('e', Str::afterLast('ééé yvette', 'T', true));
+        $this->assertSame('', Str::afterLast('yvette', 'TTE', true));
+        $this->assertSame('yvette', Str::afterLast('yvette', 'XXXX', true));
+        $this->assertSame('yvette', Str::afterLast('yvette', '', true));
+        $this->assertSame('te', Str::afterLast('yv0et0te', '0', true));
+        $this->assertSame('te', Str::afterLast('yv0et0te', 0, true));
+        $this->assertSame('te', Str::afterLast('yv2et2te', 2, true));
+        $this->assertSame('foo', Str::afterLast('----foo', '---', true));
     }
 
     /**
