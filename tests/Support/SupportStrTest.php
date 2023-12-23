@@ -248,6 +248,7 @@ class SupportStrTest extends TestCase
         $this->assertSame('yv0et', Str::beforeLast('yv0et0te', '0'));
         $this->assertSame('yv0et', Str::beforeLast('yv0et0te', 0));
         $this->assertSame('yv2et', Str::beforeLast('yv2et2te', 2));
+        $this->assertSame('yvette', Str::beforeLast('yvette', 'TTE'));
         // Ignore Case
         $this->assertSame('yve', Str::beforeLast('yvette', 'TTE', true));
         $this->assertSame('yvet', Str::beforeLast('yvette', 'T', true));
@@ -341,6 +342,7 @@ class SupportStrTest extends TestCase
         $this->assertSame('te', Str::afterLast('yv0et0te', 0));
         $this->assertSame('te', Str::afterLast('yv2et2te', 2));
         $this->assertSame('foo', Str::afterLast('----foo', '---'));
+        $this->assertSame('yvette', Str::afterLast('yvette', 'TTE'));
         // Ignore Case
         $this->assertSame('tte', Str::afterLast('yvette', 'YVE', true));
         $this->assertSame('e', Str::afterLast('yvette', 'T', true));
