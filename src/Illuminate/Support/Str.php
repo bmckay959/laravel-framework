@@ -101,13 +101,17 @@ class Str
      * @param  string  $search
      * @return string
      */
-    public static function afterLast($subject, $search)
+    public static function afterLast($subject, $search, $ignoreCase = false)
     {
         if ($search === '') {
             return $subject;
         }
 
-        $position = strrpos($subject, (string) $search);
+        if($ignoreCase) {
+            $position = strripos($subject, (string) $search);
+        } else {
+            $position = strrpos($subject, (string) $search);
+        }
 
         if ($position === false) {
             return $subject;
@@ -170,13 +174,17 @@ class Str
      * @param  string  $search
      * @return string
      */
-    public static function beforeLast($subject, $search)
+    public static function beforeLast($subject, $search, $ignoreCase = false)
     {
         if ($search === '') {
             return $subject;
         }
 
-        $pos = mb_strrpos($subject, $search);
+        if($ignoreCase) {
+            $pos = mb_strripos($subject, $search);
+        } else {
+            $pos = mb_strrpos($subject, $search);
+        }
 
         if ($pos === false) {
             return $subject;
